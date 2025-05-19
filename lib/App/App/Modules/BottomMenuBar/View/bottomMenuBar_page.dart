@@ -1,7 +1,10 @@
 // ignore: file_names
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_portfolio/App/App/Themes/FontsThems.dart';
+import 'package:my_portfolio/App/Data/Values/images.dart';
 
 import '../../../../../Core/Enums/base_view.dart';
 
@@ -16,44 +19,108 @@ class BottomMenuBarPage extends StatelessWidget {
     return BaseView<BottomMenuBarController>(
       onModelReady: (models) {},
       builder: (context, controller, Widget? child) {
+
+
+        print("*****************DeviceType.mobile${DeviceType.mobile}***********");
         return Scaffold(
           backgroundColor: AppColors.primaryColors,
-          appBar: AppBar(
-            backgroundColor: Colors.black26,            
-            automaticallyImplyLeading: false,
-
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            )
-                      
+          body: Column(
+            children: [
+            
+            DeviceType.mobile ==DeviceType.mobile? AnimatedContainer(
+      duration: Durations.medium1,
+      height: 50.h,
+      decoration: BoxDecoration(
+        color: AppColors.whiteColors,
+        borderRadius: BorderRadius.circular(2.w),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FaIcon(FontAwesomeIcons.bars,
+            
+            color: AppColors.buttonLinerColorsA,
+            size: 20.w,
             ),
-            leading: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                )),
-            title: Text(
-              "Ramendra",
-              style: TextStyle(color: Colors.white),
+            Image.asset(
+              ImagesThemes.logoWithWhiteColorCir,
+              width: 100.w,
+              height: 40.h,
+              color: AppColors.buttonLinerColorsA,
+              filterQuality: FilterQuality.high,
+              fit: BoxFit.cover,
             ),
-            centerTitle: true,
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.notifications_active,
-                    color: Colors.white,
-                  ))
+            
+          ],
+        ),
+      ),
+    ): webNavBar(),
+            
             ],
           ),
-          
-
-
         );
       },
     );
   }
+
+  Widget webNavBar() {
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+    child: AnimatedContainer(
+      duration: Durations.medium1,
+      height: 50.h,
+      decoration: BoxDecoration(
+        color: AppColors.whiteColors,
+        borderRadius: BorderRadius.circular(2.w),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              ImagesThemes.logoWithWhiteColorCir,
+              width: 40.w,
+              color: AppColors.buttonLinerColorsA,
+              filterQuality: FilterQuality.high,
+              fit: BoxFit.cover,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                _navItem("Home", () {
+                  print("Clicked Home");
+                  // Navigator.pushNamed(context, '/home');
+                }),
+                SizedBox(width: 15.w),
+                _navItem("About Us", () {
+                  print("Clicked About Us");
+                  // Navigator.pushNamed(context, '/about');
+                }),
+                SizedBox(width: 15.w),
+                _navItem("Contact Us", () {
+                  print("Clicked Contact Us");
+                  // Navigator.pushNamed(context, '/contact');
+                }),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _navItem(String title, VoidCallback onTap) {
+  return InkWell(
+    onTap: onTap,
+    child: Text(
+      title,
+      style: FontStyles.pageSubTitle16FontPrimaryColorStylishLato,
+    ),
+  );
+}
+
 }

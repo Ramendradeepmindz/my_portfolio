@@ -18,8 +18,8 @@ static  final  pageTitle16FontPrimaryColorStylishAveriaLibre = TextStyle(
 );
 static  final  pageSubTitle16FontPrimaryColorStylishLato = TextStyle(
   color: AppColors. textSecondaryColor,
-  fontWeight: FontWeight.w400,
-  fontSize: ScreenUtil().setHeight(12),
+  fontWeight: FontWeight.w500,
+  fontSize: ScreenUtil().setHeight(14),
   fontFamily: Fonts.lato,
 
 );
